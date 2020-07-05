@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello JobController!
+{% endblock %}
+
+{% block body %}
+	{%  for job in jobs %}
+		<job>
+			<a href="{{ path('job', {'id': job.id}) }}">
+				<table>
+					<tr>
+						<th><img src={{ asset('/images/'~job.img) }} alt=""></th>
+						<th>
+							<h4>{{ job.name }}</h4>
+						</th>
+					</tr>
+				</table>
+			</a>
+			{# <img src={{ asset('images/50px-Acorn_Icon.png') }} alt=""> #}
+		</job>
+	{% endfor %}
+{% endblock %}
