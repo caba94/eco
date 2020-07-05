@@ -25,6 +25,12 @@ class CraftController extends AbstractController
             if ($req->request->get('raw1') != "") {
                 $craft->addIngredient($repoRaw->findOneBy(['name' => $req->request->get('raw1')]));
             }
+            if ($req->request->get('raw2') != "") {
+                $craft->addIngredient($repoRaw->findOneBy(['name' => $req->request->get('raw2')]));
+            }
+            if ($req->request->get('raw3') != "") {
+                $craft->addIngredient($repoRaw->findOneBy(['name' => $req->request->get('raw3')]));
+            }
             dump($craft);
             $manager->persist($craft);
             $manager->flush();
