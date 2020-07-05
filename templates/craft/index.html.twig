@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{# {% form_theme form 'bootstrap_4_layout.html.twig' %} #}
+{# {% form_theme Craft 'bootstrap_4_layout.html.twig' %} #}
 
 {% block title %}Hello CraftController!
 {% endblock %}
@@ -8,6 +8,7 @@
 {% block body %}
 	<h1>Creation d'une nouvelle recette</h1>
 
+	{# {{ form(Craft) }} #}
 	<form action="" method="post">
 		<ul>
 			<li>craft Name :
@@ -16,35 +17,35 @@
 			<li>
 				ingredient 1:
 				<select name="raw1" id="">
-                <option value=""></option>
+					<option value=""></option>
 					{% for raw in raws %}
 						<option value="{{ raw.name }}">{{ raw.name }}</option>
 					{% endfor %}
 				</select>
 				Quantité :
-				<input type="text" name="qd1">
+				<input type="text" name="q1">
 			</li>
 			<li>
 				ingredient 2:
 				<select name="raw2" id="">
-                <option value=""></option>
+					<option value=""></option>
 					{% for raw in raws %}
 						<option value="{{ raw.name }}">{{ raw.name }}</option>
 					{% endfor %}
 				</select>
 				Quantité :
-				<input type="text" name="qd2">
+				<input type="text" name="q2">
 			</li>
 			<li>
 				ingredient 3:
 				<select name="raw3" id="">
-                <option value=""></option>
+					<option value=""></option>
 					{% for raw in raws %}
 						<option value="{{ raw.name }}">{{ raw.name }}</option>
 					{% endfor %}
 				</select>
 				Quantité :
-				<input type="text" name="qd3">
+				<input type="text" name="q3">
 			</li>
 		</ul>
 		<button class="submit" class="btn btn-success">Add</button>

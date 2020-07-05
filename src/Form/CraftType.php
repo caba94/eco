@@ -13,7 +13,7 @@ class CraftType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('Ingredients')
+            //->add('Ingredients')
         ;
     }
 

@@ -35,9 +35,10 @@ class Raw
     private $img;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Craft::class, mappedBy="Ingredients")
+     * @ORM\OneToMany(targetEntity=Craft::class, mappedBy="raw1")
      */
     private $crafts;
+
 
     public function __construct()
     {
@@ -97,7 +98,7 @@ class Raw
     {
         if (!$this->crafts->contains($craft)) {
             $this->crafts[] = $craft;
-            $craft->addIngredient($this);
+            $craft->setRaw1($this);
         }
 
         return $this;
@@ -107,9 +108,14 @@ class Raw
     {
         if ($this->crafts->contains($craft)) {
             $this->crafts->removeElement($craft);
-            $craft->removeIngredient($this);
+            // set the owning side to null (unless already changed)
+            if ($craft->getRaw1() === $this) {
+                $craft->setRaw1(null);
+            }
         }
 
         return $this;
     }
+
+    
 }
