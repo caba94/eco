@@ -33,29 +33,27 @@ class Craft
      * @ORM\Column(type="integer", nullable=true)
      */
     private $Qraw1;
-    /**
-     * @ORM\ManyToOne(targetEntity=Raw::class, inversedBy="crafts")
-     */
-    private $raw2;
-
+   
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
     private $Qraw2;
-    /**
-     * @ORM\ManyToOne(targetEntity=Raw::class, inversedBy="crafts")
-     */
-    private $raw3;
-
+   
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
     private $Qraw3;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=job::class, inversedBy="crafts")
+     */
+    private $Job;
+
+
 
     public function __construct()
     {
-        $this->Ingredients = new ArrayCollection();
+        $this->raw2 = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -99,17 +97,6 @@ class Craft
         return $this;
     }
 
-    public function getRaw2(): ?Raw
-    {
-        return $this->raw12;
-    }
-
-    public function setRaw2(?Raw $raw2): self
-    {
-        $this->raw2 = $raw2;
-
-        return $this;
-    }
 
     public function getQraw2(): ?int
     {
@@ -122,18 +109,7 @@ class Craft
 
         return $this;
     }
-    public function getRaw3(): ?Raw
-    {
-        return $this->raw3;
-    }
-
-    public function setRaw3(?Raw $raw3): self
-    {
-        $this->raw3 = $raw3;
-
-        return $this;
-    }
-
+   
     public function getQraw3(): ?int
     {
         return $this->Qraw3;
@@ -146,6 +122,17 @@ class Craft
         return $this;
     }
 
+    public function getJob(): ?job
+    {
+        return $this->Job;
+    }
+
+    public function setJob(?job $Job): self
+    {
+        $this->Job = $Job;
+
+        return $this;
+    }
 
     
 }

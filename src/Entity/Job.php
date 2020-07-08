@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\JobRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -66,6 +68,16 @@ class Job
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $img;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Craft::class, mappedBy="Job")
+     */
+    private $crafts;
+
+    public function __construct()
+    {
+        $this->crafts = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -188,6 +200,37 @@ class Job
     public function setImg(?string $img): self
     {
         $this->img = $img;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Craft[]
+     */
+    public function getCrafts(): Collection
+    {
+        return $this->crafts;
+    }
+
+    public function addCraft(Craft $craft): self
+    {
+        if (!$this->crafts->contains($craft)) {
+            $this->crafts[] = $craft;
+            $craft->setJob($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCraft(Craft $craft): self
+    {
+        if ($this->crafts->contains($craft)) {
+            $this->crafts->removeElement($craft);
+            // set the owning side to null (unless already changed)
+            if ($craft->getJob() === $this) {
+                $craft->setJob(null);
+            }
+        }
 
         return $this;
     }

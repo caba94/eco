@@ -8,8 +8,8 @@
 {% block body %}
 	<h1>Creation d'une nouvelle recette</h1>
 
-	{# {{ form(Craft) }} #}
-	<form action="" method="post">
+	{{ form(Craft) }}
+	{# <form action="" method="post">
 		<ul>
 			<li>craft Name :
 				<input type="text" name="craftName">
@@ -47,8 +47,18 @@
 				Quantité :
 				<input type="text" name="q3">
 			</li>
+			<li>
+				Job:
+				<select name="job" id="">
+					<option value=""></option>
+					{% for job in jobs %}
+						<option value="{{ job.name }}">{{ job.name }}</option>
+					{% endfor %}
+				</select>
+				
+			</li>
 		</ul>
 		<button class="submit" class="btn btn-success">Add</button>
-	</form>
+	</form> #}
 
 {% endblock %}
