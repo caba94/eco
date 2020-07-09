@@ -29,14 +29,14 @@ class CraftController extends AbstractController
                 $craft->setRaw1($repoRaw->findOneBy(['name' => $req->request->get('raw1')]));
                 $craft->setQraw1($req->request->get('q1'));
             }
-            // if ($req->request->get('raw2') != "") {
-            //     $craft->setRaw2($repoRaw->findOneBy(['name' => $req->request->get('raw2')]));
-            //     $craft->setQraw2($req->request->get('q3'));
-            // }
-            // if ($req->request->get('raw3') != "") {
-            //     $craft->setRaw3($repoRaw->findOneBy(['name' => $req->request->get('raw3')]));
-            //     $craft->setQraw3($req->request->get('q2'));
-            // }
+            if ($req->request->get('raw2') != "") {
+                $craft->setRaw2($repoRaw->findOneBy(['name' => $req->request->get('raw2')]));
+                $craft->setQraw2($req->request->get('q3'));
+            }
+            if ($req->request->get('raw3') != "") {
+                $craft->setRaw3($repoRaw->findOneBy(['name' => $req->request->get('raw3')]));
+                $craft->setQraw3($req->request->get('q2'));
+            }
             $craft->setJob($repoJob->findOneBy(['name' => $req->request->get('job')]));
             
             $manager->persist($craft);

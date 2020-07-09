@@ -25,9 +25,19 @@ class Craft
     private $name;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Raw::class, inversedBy="crafts")
+     * @ORM\ManyToOne(targetEntity=Raw::class)
      */
     private $raw1;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Raw::class)
+     */
+    private $raw2;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Raw::class)
+     */
+    private $raw3;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
@@ -53,7 +63,7 @@ class Craft
 
     public function __construct()
     {
-        $this->raw2 = new ArrayCollection();
+        
     }
 
     public function getId(): ?int
@@ -81,6 +91,29 @@ class Craft
     public function setRaw1(?Raw $raw1): self
     {
         $this->raw1 = $raw1;
+
+        return $this;
+    }
+
+    public function getRaw2(): ?Raw
+    {
+        return $this->raw2;
+    }
+    public function setRaw2(?Raw $raw2): self
+    {
+        $this->raw2 = $raw2;
+
+        return $this;
+    }
+
+    public function getRaw3(): ?Raw
+    {
+        return $this->raw3;
+    }
+
+    public function setRaw3(?Raw $raw3): self
+    {
+        $this->raw3 = $raw3;
 
         return $this;
     }

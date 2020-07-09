@@ -27,10 +27,14 @@ class CraftType extends AbstractType
                 'class' => Job::class,
                 'choice_label' => 'name',
             ])
-            // ->add('raw2', EntityType::class, [
-            //     'class' => Raw::class,
-            //     'choice_label' => 'name',
-            // ])
+            ->add('raw2', EntityType::class, [
+                'class' => Raw::class,
+                'choice_label' => 'name',
+            ])
+            ->add('raw3', EntityType::class, [
+                'class' => Raw::class,
+                'choice_label' => 'name',
+            ])
             ;
     }
 

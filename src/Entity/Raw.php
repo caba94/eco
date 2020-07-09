@@ -34,10 +34,6 @@ class Raw
      */
     private $img;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Craft::class, mappedBy="raw1")
-     */
-    private $crafts;
 
 
     public function __construct()
@@ -86,36 +82,6 @@ class Raw
         return $this;
     }
 
-    /**
-     * @return Collection|Craft[]
-     */
-    public function getCrafts(): Collection
-    {
-        return $this->crafts;
-    }
-
-    public function addCraft(Craft $craft): self
-    {
-        if (!$this->crafts->contains($craft)) {
-            $this->crafts[] = $craft;
-            $craft->setRaw1($this);
-        }
-
-        return $this;
-    }
-
-    public function removeCraft(Craft $craft): self
-    {
-        if ($this->crafts->contains($craft)) {
-            $this->crafts->removeElement($craft);
-            // set the owning side to null (unless already changed)
-            if ($craft->getRaw1() === $this) {
-                $craft->setRaw1(null);
-            }
-        }
-
-        return $this;
-    }
-
+    
     
 }
