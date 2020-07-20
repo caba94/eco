@@ -6,6 +6,7 @@ use App\Repository\CraftRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Asserts;
 
 /**
  * @ORM\Entity(repositoryClass=CraftRepository::class)
@@ -41,16 +42,31 @@ class Craft
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Asserts\Range(
+     *      min = 0,
+     *      max = 10,
+     *      notInRangeMessage = "You must be between {{ min }} and {{ max }} to enter",
+     * )
      */
     private $Qraw1;
    
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Asserts\Range(
+     *      min = 0,
+     *      max = 10,
+     *      notInRangeMessage = "You must be between {{ min }} and {{ max }} tall to enter",
+     * )
      */
     private $Qraw2;
    
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Asserts\Range(
+     *      min = 0,
+     *      max = 10,
+     *      notInRangeMessage = "You must be between {{ min }} and {{ max }} tall to enter",
+     * )
      */
     private $Qraw3;
 
