@@ -31,7 +31,7 @@ class CraftController extends AbstractController
             $manager->persist($craft);
             $manager->flush();
 
-            $this->redirectToRoute('item',$craft->getId());
+            $this->redirectToRoute('item',['id'=>$craft->getId()]);
         }
 
         return $this->render('craft/addCraft.html.twig', [
