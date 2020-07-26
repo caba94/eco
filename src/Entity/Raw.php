@@ -34,11 +34,17 @@ class Raw
      */
     private $img;
 
+    /**
+     * @ORM\OneToMany(targetEntity=RawCraft::class, mappedBy="raw", orphanRemoval=true)
+     */
+    private $rawCrafts;
+
 
 
     public function __construct()
     {
         $this->crafts = new ArrayCollection();
+        $this->rawCrafts = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -78,6 +84,37 @@ class Raw
     public function setImg(?string $img): self
     {
         $this->img = $img;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|RawCraft[]
+     */
+    public function getRawCrafts(): Collection
+    {
+        return $this->rawCrafts;
+    }
+
+    public function addRawCraft(RawCraft $rawCraft): self
+    {
+        if (!$this->rawCrafts->contains($rawCraft)) {
+            $this->rawCrafts[] = $rawCraft;
+            $rawCraft->setRaw($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRawCraft(RawCraft $rawCraft): self
+    {
+        if ($this->rawCrafts->contains($rawCraft)) {
+            $this->rawCrafts->removeElement($rawCraft);
+            // set the owning side to null (unless already changed)
+            if ($rawCraft->getRaw() === $this) {
+                $rawCraft->setRaw(null);
+            }
+        }
 
         return $this;
     }
