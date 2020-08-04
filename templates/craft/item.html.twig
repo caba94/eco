@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello JobController!
+{% endblock %}
+
+{% block body %}
+	{%  for job in jobs %}
+		<job>
+			<table>
+				<tr>
+					{# <th><img src={{ asset('/images/'~craft.img) }} alt=""></th> #}
+					<th>
+						<h4>{{ craft.name }}</h4>
+					</th>
+				</tr>
+			</table>
+			{# <img src={{ asset('images/50px-Acorn_Icon.png') }} alt=""> #}
+		</job>
+	{% endfor %}
+{% endblock %}
