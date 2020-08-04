@@ -20,7 +20,7 @@ class CraftController extends AbstractController
     /**
      * @Route("/addCraft", name="addCraft")
      */
-    public function addCraft(Request $req, EntityManagerInterface $manager, RawRepository $repoRaw,JobRepository $repoJob)
+    public function addCraft(Request $req, EntityManagerInterface $manager, RawRepository $repoRaw, JobRepository $repoJob)
     {
         //dump($req);
         $craft = new Craft();
@@ -32,31 +32,30 @@ class CraftController extends AbstractController
         $craft->getRawCrafts()->add($rawCraft3);
 
 
-        $form = $this->createForm(CraftType::class,$craft);
-        
+        $form = $this->createForm(CraftType::class, $craft);
+
         $form->handleRequest($req);
-        if($form->isSubmitted() && $form->isValid()){
+        if ($form->isSubmitted() && $form->isValid()) {
             $addcraft = new Craft();
             $addcraft->setName($craft->getName());
             $addcraft->setJob($craft->getJob());
-            if($rawCraft1->getQuantity() > 0){
+            if ($rawCraft1->getQuantity() > 0) {
                 $rawCraft1->setCraft($addcraft);
                 $manager->persist($rawCraft1);
             }
-            if($rawCraft2->getQuantity() > 0){
+            if ($rawCraft2->getQuantity() > 0) {
                 $rawCraft2->setCraft($addcraft);
                 $manager->persist($rawCraft2);
             }
-            if($rawCraft3->getQuantity() > 0){
+            if ($rawCraft3->getQuantity() > 0) {
                 $rawCraft3->setCraft($addcraft);
                 $manager->persist($rawCraft3);
             }
 
-            
+
             $manager->persist($addcraft);
             $manager->flush();
-
-            $this->redirectToRoute('item',['id'=>$addcraft->getId()]);
+            $this->redirectToRoute('job', ['id' => $addcraft->getJob()->getID()]);
         }
 
         return $this->render('craft/addCraft.html.twig', [
@@ -66,13 +65,5 @@ class CraftController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/item/{id}",name="item")
-     */
-    public function itemView(Craft $craft){
-        return $this->render('craft/item.html.twig',[
-            'craft'=> $craft
-        ]);
-    }
 
 }
